@@ -22,6 +22,7 @@ export function Footer() {
                     <p className="text-muted-foreground mb-4">
                         Join us in our mission to bring tangible development to our constituency.
                     </p>
+
                     <div className="flex gap-4">
                         <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-white">
                             Fb
@@ -36,8 +37,9 @@ export function Footer() {
                 </div>
             </div>
             <div className="container mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground">
-                <p>&copy; {new Date().getFullYear()} Hon. Amos Gwamna Magaji Campaign. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Hon. Amos Gwamna Magaji Campaign. All rights reserved. <br /> <a href="https://idibia.com">Powered by <span className="text-white underline ml-2"> Idibia </span></a></p>
                 <p className="mt-4 md:mt-0 italic">"In service to God and our community."</p>
+
             </div>
         </footer>
     )

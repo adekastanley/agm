@@ -43,7 +43,7 @@ export function Hero() {
                     className="relative h-[600px] w-full"
                 >
                     <div className="absolute inset-0 bg-muted/20 border border-white/10 flex items-center justify-center shadow-2xl">
-                        <img src="/agm2.jpg" className='w-full h-full object-cover' alt="agm" srcset="" />
+                        <img src="/agm2.jpg" className='w-full h-full object-cover' alt="agm" />
                     </div>
                 </motion.div>
             </div>

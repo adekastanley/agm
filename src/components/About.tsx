@@ -8,7 +8,7 @@ export function About() {
                     <div className="lg:col-span-5 relative h-[700px]">
                         <FadeIn>
                             <div className="w-full h-[700px] bg-muted flex items-center justify-center relative z-10">
-                                <img src="/agm1.jpg" className='w-full h-full object-cover' alt="agm" srcset="" />
+                                <img src="/agm1.jpg" className='w-full h-full object-cover' alt="agm" />
                             </div>
                             {/* Decorative Elements */}
                             <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-primary/10 -z-10" />
