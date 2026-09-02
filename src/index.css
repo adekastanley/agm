@@ -111,17 +111,26 @@
 }
 
 @layer base {
-  * {
+  *,
+  ::before,
+  ::after {
     @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
+    box-sizing: border-box;
   }
 
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
   }
 
   /* Utilities for the campaign design */

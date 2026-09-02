@@ -2,17 +2,17 @@ import { FadeIn } from './FadeIn'
 
 export function About() {
     return (
-        <section id="about" className="py-24 bg-white">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                    <div className="lg:col-span-5 relative h-[700px]">
-                        <FadeIn>
-                            <div className="w-full h-[700px] bg-muted flex items-center justify-center relative z-10">
+        <section id="about" className="py-16 sm:py-24 bg-white relative overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    <div className="lg:col-span-5 relative h-[450px] sm:h-[550px] lg:h-[700px]">
+                        <FadeIn className="h-full">
+                            <div className="w-full h-[450px] sm:h-[550px] lg:h-[700px] bg-muted flex items-center justify-center relative z-10 shadow-lg">
                                 <img src="/agm1.jpg" className='w-full h-full object-cover' alt="agm" />
                             </div>
                             {/* Decorative Elements */}
-                            <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-primary/10 -z-10" />
-                            <div className="absolute -top-8 -right-8 w-32 h-32 bg-background border-8 border-primary -z-10" />
+                            <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 w-48 sm:w-64 h-48 sm:h-64 bg-primary/10 -z-10" />
+                            <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-8 w-24 sm:w-32 h-24 sm:h-32 bg-background border-4 sm:border-8 border-primary -z-10" />
                         </FadeIn>
                     </div>
 

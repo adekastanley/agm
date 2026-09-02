@@ -12,7 +12,7 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
     return (
-        <div className="w-full">
+        <div className="w-full max-w-full overflow-x-hidden">
             <Hero />
             <About />
             <Impact />

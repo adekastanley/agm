@@ -14,12 +14,12 @@ export function Header() {
 
     return (
         <header
-            className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border' : 'bg-transparent'
+            className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border' : 'bg-transparent'
                 }`}
         >
-            <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-2">
-                    <span className={`text-2xl font-bold tracking-tighter ${scrolled ? 'text-foreground' : 'text-foreground lg:text-white'}`}>
+            <div className="container mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+                <Link to="/" className="flex items-center gap-2 max-w-[85%] sm:max-w-none">
+                    <span className={`text-xl sm:text-2xl font-bold tracking-tighter truncate ${scrolled ? 'text-foreground' : 'text-foreground lg:text-white'}`}>
                         HON. AMOS G. MAGAJI
                     </span>
                 </Link>
