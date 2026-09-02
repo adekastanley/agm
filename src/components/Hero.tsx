@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 export function Hero() {
     return (
         <section className="relative min-h-[90vh] flex items-center bg-background overflow-hidden pt-20">
-            <div className="absolute inset-0 z-0 flex pointer-events-none">
+            <div className="absolute inset-0 z-0 hidden lg:flex pointer-events-none">
                 <div className="w-1/2 bg-background h-full" />
                 <div className="w-1/2 bg-primary h-full clip-diagonal" style={{ clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0% 100%)' }} />
             </div>
