@@ -25,14 +25,24 @@ export function Header() {
                 </Link>
 
                 <nav className="hidden md:flex items-center gap-8">
-                    {['About', 'Impact', 'Health Agenda', 'Media', 'Volunteer'].map((item) => (
-                        <a
-                            key={item}
-                            href={`#${item.toLowerCase().replace(' ', '-')}`}
-                            className="text-sm font-medium uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-                        >
-                            {item}
-                        </a>
+                    {['About', 'Projects', 'Health Agenda', 'Media', 'Volunteer'].map((item) => (
+                        item === 'Projects' ? (
+                            <Link
+                                key={item}
+                                to="/projects"
+                                className="text-sm font-medium uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors [&.active]:text-primary"
+                            >
+                                {item}
+                            </Link>
+                        ) : (
+                            <a
+                                key={item}
+                                href={`/#${item.toLowerCase().replace(' ', '-')}`}
+                                className="text-sm font-medium uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                            >
+                                {item}
+                            </a>
+                        )
                     ))}
                 </nav>
 

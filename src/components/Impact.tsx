@@ -1,6 +1,11 @@
 import { FadeIn } from './FadeIn'
+import { Link } from '@tanstack/react-router'
+import type { PostData } from '../lib/api'
 
-export function Impact() {
+export function Impact({ projects = [] }: { projects?: PostData[] }) {
+    // If no projects, we can either return null or show a message.
+    // For now, we'll render whatever we have.
+
     return (
         <section id="impact" className="py-16 sm:py-24 bg-foreground text-background relative overflow-hidden">
             {/* Background accent */}
@@ -20,32 +25,47 @@ export function Impact() {
                 </FadeIn>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                        <FadeIn key={i} delay={i * 0.1}>
-                            <div className="group relative bg-background/5 border border-white/10 hover:border-primary/50 transition-colors h-[360px] sm:h-[400px] flex flex-col justify-end p-6 sm:p-8 overflow-hidden">
-                                <div className="absolute inset-0 bg-muted/20 -z-10 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
-                                    <span className="text-muted-foreground text-sm">Project Image Placeholder {i}</span>
-                                </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent -z-10" />
+                    {projects.map((project, index) => {
+                        // Filter out the 'Projects' category itself to show the actual type (e.g., 'Health')
+                        const tags = project.categories.filter(c => c.slug !== 'projects');
+                        const displayTag = tags.length > 0 ? tags[0].name : 'Project';
 
-                                <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
-                                    {i % 2 === 0 ? 'Infrastructure' : 'Education'}
-                                </span>
-                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight">
-                                    Construction of Community Borehole {i}
-                                </h3>
-                                <p className="text-white/70 text-sm line-clamp-2">
-                                    Providing clean and accessible water to over 5,000 residents, ensuring better health outcomes and community well-being.
-                                </p>
-                            </div>
-                        </FadeIn>
-                    ))}
+                        return (
+                            <FadeIn key={project.id} delay={index * 0.1}>
+                                <Link 
+                                    to="/projects/$slug" 
+                                    // @ts-ignore - TanStack router type inference issue in IDE
+                                    params={{ slug: project.slug }}
+                                    className="group relative bg-background/5 border border-white/10 hover:border-primary/50 transition-colors h-[360px] sm:h-[400px] flex flex-col justify-end p-6 sm:p-8 overflow-hidden block"
+                                >
+                                    <div className="absolute inset-0 bg-muted/20 -z-10 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
+                                        {project.featured_image ? (
+                                            <img src={project.featured_image} alt={project.title} className="w-full h-full object-cover" />
+                                        ) : (
+                                            <span className="text-muted-foreground text-sm">No Image</span>
+                                        )}
+                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent -z-10" />
+
+                                    <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+                                        {displayTag}
+                                    </span>
+                                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight" dangerouslySetInnerHTML={{ __html: project.title }} />
+                                    {/* The excerpt usually contains <p> tags from WP, so we inject it safely and use line-clamp */}
+                                    <div 
+                                        className="text-white/70 text-sm line-clamp-2 [&>p]:m-0" 
+                                        dangerouslySetInnerHTML={{ __html: project.excerpt || project.content }} 
+                                    />
+                                </Link>
+                            </FadeIn>
+                        )
+                    })}
                 </div>
 
                 <div className="mt-12 text-center">
-                    <button className="inline-flex h-12 items-center justify-center border border-white/20 px-8 text-sm font-medium text-white hover:bg-white hover:text-foreground transition-colors">
+                    <Link to="/projects" className="inline-flex h-12 items-center justify-center border border-white/20 px-8 text-sm font-medium text-white hover:bg-white hover:text-foreground transition-colors">
                         View All Projects
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

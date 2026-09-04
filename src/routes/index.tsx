@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { fetchHomePageContent } from '../lib/api'
+import { fetchHomePageContent, fetchProjects } from '../lib/api'
 import { Hero } from '../components/Hero'
 import { About } from '../components/About'
 import { Impact } from '../components/Impact'
@@ -9,20 +9,23 @@ import { Volunteer } from '../components/Volunteer'
 
 export const Route = createFileRoute('/')({
     loader: async () => {
-        const homeData = await fetchHomePageContent();
-        return { homeData };
+        const [homeData, projects] = await Promise.all([
+            fetchHomePageContent(),
+            fetchProjects(6)
+        ]);
+        return { homeData, projects };
     },
     component: RouteComponent,
 })
 
 function RouteComponent() {
-    const { homeData } = Route.useLoaderData();
+    const { homeData, projects } = Route.useLoaderData();
 
     return (
         <div className="w-full max-w-full overflow-x-hidden">
             <Hero data={homeData} />
             <About data={homeData} />
-            <Impact />
+            <Impact projects={projects} />
             <HealthAgenda />
             <MediaHub />
             <Volunteer />

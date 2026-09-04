@@ -17,7 +17,29 @@ export interface HomePageData {
     hero_headline?: string;
     hero_description?: string;
     hero_image?: string;
+    about_headline?: string;
+    about_content?: string;
+    about_image?: string;
+    health_agenda_content?: string;
     // other fields omitted for brevity
+}
+
+export interface PostCategory {
+    id: number;
+    name: string;
+    slug: string;
+}
+
+export interface PostData {
+    id: number;
+    slug: string;
+    title: string;
+    content: string;
+    excerpt: string;
+    date: string;
+    author: string;
+    featured_image: string | null;
+    categories: PostCategory[];
 }
 
 export const fetchHomePageContent = async (): Promise<HomePageData | null> => {
@@ -30,3 +52,38 @@ export const fetchHomePageContent = async (): Promise<HomePageData | null> => {
         return null;
     }
 };
+
+export const fetchProjects = async (limit: number = 10): Promise<PostData[]> => {
+    try {
+        // Fetch posts filtered by the 'projects' category
+        const response = await apiClient.get('/posts', {
+            params: {
+                category: 'projects',
+                per_page: limit,
+            }
+        });
+        return response.data?.data?.posts || [];
+    } catch (error) {
+        console.error("Error fetching projects from Idibia CMS:", error);
+        return [];
+    }
+};
+
+export const fetchProjectBySlug = async (slug: string): Promise<PostData | null> => {
+    try {
+        // Since we don't have a known single-post endpoint in the custom API,
+        // we fetch projects and find the matching slug.
+        const response = await apiClient.get('/posts', {
+            params: {
+                category: 'projects',
+                per_page: 100, // Fetch enough to ensure we find it
+            }
+        });
+        const posts: PostData[] = response.data?.data?.posts || [];
+        return posts.find(p => p.slug === slug) || null;
+    } catch (error) {
+        console.error(`Error fetching project with slug ${slug}:`, error);
+        return null;
+    }
+};
+
