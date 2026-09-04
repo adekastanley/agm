@@ -1,0 +1,284 @@
+[
+  {
+    "id": "grp_site_settings",
+    "slug": "site_settings",
+    "title": "Site Settings & Live Banner",
+    "description": "Global settings for the website including the live update banner.",
+    "kind": "single",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_enable_live_banner",
+        "label": "Enable Live Banner",
+        "name": "enable_live_banner",
+        "type": "text",
+        "description": "Toggle to show or hide the live update banner (e.g. 'yes' or 'no')."
+      },
+      {
+        "id": "fld_live_banner_text",
+        "label": "Live Banner Text",
+        "name": "live_banner_text",
+        "type": "text",
+        "description": "The text for the live update banner (e.g., 'Join us at the Zonkwa Townhall tomorrow at 10 AM!')."
+      },
+      {
+        "id": "fld_live_banner_link",
+        "label": "Live Banner Link",
+        "name": "live_banner_link",
+        "type": "text",
+        "description": "Optional URL for the banner to link to."
+      }
+    ]
+  },
+  {
+    "id": "grp_home_page",
+    "slug": "home_page",
+    "title": "Home Page Sections",
+    "description": "Content for the static sections of the home page like Hero, About, and Health Agenda.",
+    "kind": "single",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_hero_tagline",
+        "label": "Hero Tagline",
+        "name": "hero_tagline",
+        "type": "text",
+        "description": "The dynamic tagline for the hero section."
+      },
+      {
+        "id": "fld_hero_headline",
+        "label": "Hero Headline",
+        "name": "hero_headline",
+        "type": "text",
+        "description": "Main bold headline in the hero section."
+      },
+      {
+        "id": "fld_hero_description",
+        "label": "Hero Description",
+        "name": "hero_description",
+        "type": "textarea",
+        "description": "Short description under the hero headline."
+      },
+      {
+        "id": "fld_hero_image",
+        "label": "Hero Image",
+        "name": "hero_image",
+        "type": "image",
+        "description": "High-quality portrait of Hon. Magaji for the hero section."
+      },
+      {
+        "id": "fld_about_headline",
+        "label": "About Headline",
+        "name": "about_headline",
+        "type": "text",
+        "description": "Headline for the 'Meet Hon. Amos Magaji' section."
+      },
+      {
+        "id": "fld_about_content",
+        "label": "About Content",
+        "name": "about_content",
+        "type": "textarea",
+        "description": "The narrative covering the origin story, professional background, and leadership journey. (Can use HTML)"
+      },
+      {
+        "id": "fld_about_image",
+        "label": "About Image",
+        "name": "about_image",
+        "type": "image",
+        "description": "Image for the About section."
+      },
+      {
+        "id": "fld_health_agenda_content",
+        "label": "Health Agenda Content",
+        "name": "health_agenda_content",
+        "type": "textarea",
+        "description": "Special spotlight on his role as Chairman of the House Committee on Health. (Can use HTML)"
+      }
+    ]
+  },
+  {
+    "id": "grp_impact_scorecard",
+    "slug": "impact_scorecard",
+    "title": "Impact Scorecard & Projects",
+    "description": "Legislative interventions, sponsored bills, and constituency projects.",
+    "kind": "collection",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_impact_title",
+        "label": "Title",
+        "name": "title",
+        "type": "text",
+        "description": "Title of the project, bill, or motion."
+      },
+      {
+        "id": "fld_impact_category",
+        "label": "Category",
+        "name": "category",
+        "type": "text",
+        "description": "Filter category for the scorecard (e.g., Health, Education, Infrastructure)."
+      },
+      {
+        "id": "fld_impact_description",
+        "label": "Description",
+        "name": "description",
+        "type": "textarea",
+        "description": "Brief description of the impact."
+      },
+      {
+        "id": "fld_impact_image",
+        "label": "Image",
+        "name": "image",
+        "type": "image",
+        "description": "Visual proof or gallery image for the project."
+      },
+      {
+        "id": "fld_impact_status",
+        "label": "Status",
+        "name": "status",
+        "type": "text",
+        "description": "Current status of the project or bill (e.g., Completed, Ongoing, Proposed)."
+      }
+    ]
+  },
+  {
+    "id": "grp_news_press",
+    "slug": "news_press",
+    "title": "News & Press Releases",
+    "description": "Blog-style articles and official statements.",
+    "kind": "collection",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_news_title",
+        "label": "Title",
+        "name": "title",
+        "type": "text",
+        "description": "Headline of the news article or press release."
+      },
+      {
+        "id": "fld_news_cover_image",
+        "label": "Cover Image",
+        "name": "cover_image",
+        "type": "image",
+        "description": "Featured image for the article."
+      },
+      {
+        "id": "fld_news_content",
+        "label": "Content",
+        "name": "content",
+        "type": "textarea",
+        "description": "Full content of the press release. (Can use HTML)"
+      }
+    ]
+  },
+  {
+    "id": "grp_events",
+    "slug": "events",
+    "title": "Upcoming Events",
+    "description": "Campaign trail events, rallies, and town halls.",
+    "kind": "collection",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_event_name",
+        "label": "Event Name",
+        "name": "event_name",
+        "type": "text",
+        "description": "Name of the event."
+      },
+      {
+        "id": "fld_event_date",
+        "label": "Date",
+        "name": "date",
+        "type": "text",
+        "description": "Date and time of the event (e.g., 'Oct 12, 2026 - 10:00 AM')."
+      },
+      {
+        "id": "fld_event_location",
+        "label": "Location",
+        "name": "location",
+        "type": "text",
+        "description": "Venue or location."
+      },
+      {
+        "id": "fld_event_description",
+        "label": "Description",
+        "name": "description",
+        "type": "textarea",
+        "description": "Details about the event."
+      }
+    ]
+  },
+  {
+    "id": "grp_campaign_gallery",
+    "slug": "campaign_gallery",
+    "title": "Campaign Trail Gallery",
+    "description": "Dynamic photo and video grid showing him on the ground.",
+    "kind": "single",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_gallery_items",
+        "label": "Gallery Items",
+        "name": "gallery_items",
+        "type": "repeater",
+        "description": "Add photos from the campaign trail.",
+        "subFields": [
+          {
+            "id": "fld_gallery_image",
+            "label": "Image",
+            "name": "image",
+            "type": "image",
+            "description": "Photo from the trail."
+          },
+          {
+            "id": "fld_gallery_caption",
+            "label": "Caption",
+            "name": "caption",
+            "type": "text",
+            "description": "Short caption describing the photo."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "grp_testimonials",
+    "slug": "testimonials",
+    "title": "Endorsements & Testimonials",
+    "description": "Quotes from community leaders and constituents.",
+    "kind": "collection",
+    "access_level": "public",
+    "fields": [
+      {
+        "id": "fld_testimonial_author",
+        "label": "Author Name",
+        "name": "author_name",
+        "type": "text",
+        "description": "Name of the person giving the endorsement."
+      },
+      {
+        "id": "fld_testimonial_title",
+        "label": "Author Title",
+        "name": "author_title",
+        "type": "text",
+        "description": "Title or role (e.g., 'Community Leader, Jaba')."
+      },
+      {
+        "id": "fld_testimonial_quote",
+        "label": "Quote",
+        "name": "quote",
+        "type": "textarea",
+        "description": "The testimonial quote."
+      },
+      {
+        "id": "fld_testimonial_image",
+        "label": "Author Image",
+        "name": "author_image",
+        "type": "image",
+        "description": "Photo of the person."
+      }
+    ]
+  }
+]
