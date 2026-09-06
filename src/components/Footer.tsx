@@ -14,7 +14,7 @@ export function Footer() {
                         <li><a href="#about" className="hover:text-primary transition-colors">Meet Hon. Magaji</a></li>
                         <li><a href="#impact" className="hover:text-primary transition-colors">Impact Scorecard</a></li>
                         <li><a href="#health-agenda" className="hover:text-primary transition-colors">Health Agenda</a></li>
-                        <li><a href="#volunteer" className="hover:text-primary transition-colors">Volunteer Registration</a></li>
+                        <li><a href="/contact" className="hover:text-primary transition-colors">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>

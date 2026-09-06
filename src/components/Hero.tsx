@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
+import type { HomePageData } from '../lib/api'
 
-export function Hero() {
+export function Hero({ data }: { data?: HomePageData | null }) {
     return (
         <section className="relative min-h-[90vh] flex items-center bg-background overflow-hidden pt-20">
             <div className="absolute inset-0 z-0 hidden lg:flex pointer-events-none">
@@ -17,14 +18,15 @@ export function Hero() {
                 >
                     <div className="flex items-center gap-3 mb-6">
                         <span className="w-12 h-1 bg-primary"></span>
-                        <span className="text-sm font-bold uppercase tracking-widest text-primary">Continuing the Work</span>
+                        <span className="text-sm font-bold uppercase tracking-widest text-primary">
+                            {data?.hero_tagline || "Continuing the Work"}
+                        </span>
                     </div>
-                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-balance text-foreground">
-                        Faith in Action.<br />
-                        <span className="text-primary">Results for the People.</span>
+                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-balance text-foreground whitespace-pre-line">
+                        {data?.hero_headline || "Faith in Action.\nResults for the People."}
                     </h1>
                     <p className="text-base sm:text-lg text-muted-foreground mb-8 text-balance max-w-lg">
-                        Delivering tangible development and steadfast leadership for Zangon Kataf & Jaba. Together, we build a community rooted in tolerance, hard work, and shared prosperity.
+                        {data?.hero_description || "Delivering tangible development and steadfast leadership for Zangon Kataf & Jaba. Together, we build a community rooted in tolerance, hard work, and shared prosperity."}
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <a href="#impact" className="inline-flex h-12 items-center justify-center rounded-sm bg-primary px-6 sm:px-8 text-sm font-medium text-white shadow-sm hover:bg-primary/90 transition-colors">
