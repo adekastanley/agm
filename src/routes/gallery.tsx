@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAlbums, fetchAllImagesFromAlbums } from '@/lib/api';
-import type { Album, AnnotatedImage } from '@/lib/api';
+import type { Album } from '@/lib/api';
 import { AlbumCard } from '@/components/Gallery/AlbumCard';
 import { ImageGrid } from '@/components/Gallery/ImageGrid';
 import { EmptyState } from '@/components/Gallery/EmptyState';
