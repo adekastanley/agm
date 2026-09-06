@@ -1,6 +1,7 @@
 import { FadeIn } from './FadeIn'
 import { Link } from '@tanstack/react-router'
 import type { PostData } from '../lib/api'
+import { Target } from 'lucide-react'
 
 export function Impact({ projects = [] }: { projects?: PostData[] }) {
     // If no projects, we can either return null or show a message.
@@ -24,48 +25,64 @@ export function Impact({ projects = [] }: { projects?: PostData[] }) {
                     </div>
                 </FadeIn>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    {projects.map((project, index) => {
-                        // Filter out the 'Projects' category itself to show the actual type (e.g., 'Health')
-                        const tags = project.categories.filter(c => c.slug !== 'projects');
-                        const displayTag = tags.length > 0 ? tags[0].name : 'Project';
+                {(!projects || projects.length === 0) ? (
+                    <FadeIn delay={0.2}>
+                        <div className="flex flex-col items-center justify-center py-20 px-4 bg-background/5 border border-dashed border-white/20 text-center">
+                            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+                                <Target className="w-8 h-8 text-primary" />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Projects in Progress</h3>
+                            <p className="text-muted-foreground max-w-md mx-auto">
+                                We are currently documenting our ongoing and completed projects across Zangon Kataf & Jaba. Our impact scorecard will be updated here soon.
+                            </p>
+                        </div>
+                    </FadeIn>
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                            {projects.map((project, index) => {
+                                // Filter out the 'Projects' category itself to show the actual type (e.g., 'Health')
+                                const tags = project.categories.filter(c => c.slug !== 'projects');
+                                const displayTag = tags.length > 0 ? tags[0].name : 'Project';
 
-                        return (
-                            <FadeIn key={project.id} delay={index * 0.1}>
-                                <Link 
-                                    to="/projects/$slug" 
-                                    params={{ slug: project.slug }}
-                                    className="group relative bg-background/5 border border-white/10 hover:border-primary/50 transition-colors h-[360px] sm:h-[400px] flex flex-col justify-end p-6 sm:p-8 overflow-hidden block"
-                                >
-                                    <div className="absolute inset-0 bg-muted/20 -z-10 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
-                                        {project.featured_image ? (
-                                            <img src={project.featured_image} alt={project.title} className="w-full h-full object-cover" />
-                                        ) : (
-                                            <span className="text-muted-foreground text-sm">No Image</span>
-                                        )}
-                                    </div>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent -z-10" />
+                                return (
+                                    <FadeIn key={project.id} delay={index * 0.1}>
+                                        <Link 
+                                            to="/projects/$slug" 
+                                            params={{ slug: project.slug }}
+                                            className="group relative bg-background/5 border border-white/10 hover:border-primary/50 transition-colors h-[360px] sm:h-[400px] flex flex-col justify-end p-6 sm:p-8 overflow-hidden block"
+                                        >
+                                            <div className="absolute inset-0 bg-muted/20 -z-10 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
+                                                {project.featured_image ? (
+                                                    <img src={project.featured_image} alt={project.title} className="w-full h-full object-cover" />
+                                                ) : (
+                                                    <span className="text-muted-foreground text-sm">No Image</span>
+                                                )}
+                                            </div>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent -z-10" />
 
-                                    <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
-                                        {displayTag}
-                                    </span>
-                                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight" dangerouslySetInnerHTML={{ __html: project.title }} />
-                                    {/* The excerpt usually contains <p> tags from WP, so we inject it safely and use line-clamp */}
-                                    <div 
-                                        className="text-white/70 text-sm line-clamp-2 [&>p]:m-0" 
-                                        dangerouslySetInnerHTML={{ __html: project.excerpt || project.content }} 
-                                    />
-                                </Link>
-                            </FadeIn>
-                        )
-                    })}
-                </div>
+                                            <span className="inline-block px-3 py-1 bg-primary text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+                                                {displayTag}
+                                            </span>
+                                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight" dangerouslySetInnerHTML={{ __html: project.title }} />
+                                            {/* The excerpt usually contains <p> tags from WP, so we inject it safely and use line-clamp */}
+                                            <div 
+                                                className="text-white/70 text-sm line-clamp-2 [&>p]:m-0" 
+                                                dangerouslySetInnerHTML={{ __html: project.excerpt || project.content }} 
+                                            />
+                                        </Link>
+                                    </FadeIn>
+                                )
+                            })}
+                        </div>
 
-                <div className="mt-12 text-center">
-                    <Link to="/projects" className="inline-flex h-12 items-center justify-center border border-white/20 px-8 text-sm font-medium text-white hover:bg-white hover:text-foreground transition-colors">
-                        View All Projects
-                    </Link>
-                </div>
+                        <div className="mt-12 text-center">
+                            <Link to="/projects" className="inline-flex h-12 items-center justify-center border border-white/20 px-8 text-sm font-medium text-white hover:bg-white hover:text-foreground transition-colors">
+                                View All Projects
+                            </Link>
+                        </div>
+                    </>
+                )}
             </div>
         </section>
     )

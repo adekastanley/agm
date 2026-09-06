@@ -2,9 +2,37 @@ import { FadeIn } from './FadeIn'
 import { Link } from '@tanstack/react-router'
 import type { PostData } from '../lib/api'
 import { format } from 'date-fns'
+import { Newspaper } from 'lucide-react'
 
 export function NewsCarousel({ news = [] }: { news?: PostData[] }) {
-    if (!news || news.length === 0) return null;
+    if (!news || news.length === 0) {
+        return (
+            <section id="news" className="py-16 sm:py-24 bg-white border-t border-border relative overflow-hidden">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                        <FadeIn>
+                            <span className="text-sm font-bold uppercase tracking-widest text-primary mb-4 block">Campaign Hub</span>
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter text-foreground">
+                                News & Announcements
+                            </h2>
+                        </FadeIn>
+                    </div>
+                    
+                    <FadeIn delay={0.2}>
+                        <div className="flex flex-col items-center justify-center py-20 px-4 bg-muted/20 border border-dashed border-border text-center">
+                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                                <Newspaper className="w-8 h-8 text-primary" />
+                            </div>
+                            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">Updates Coming Soon</h3>
+                            <p className="text-muted-foreground max-w-md mx-auto">
+                                We are currently preparing our latest news and announcements. Check back shortly for updates on our campaign activities and progress.
+                            </p>
+                        </div>
+                    </FadeIn>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="news" className="py-16 sm:py-24 bg-white border-t border-border relative overflow-hidden">

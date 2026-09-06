@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { fetchProjects } from '../lib/api'
 import { FadeIn } from '../components/FadeIn'
 import { Link } from '@tanstack/react-router'
+import { Target } from 'lucide-react'
 
 export const Route = createFileRoute('/projects/')({
     loader: async () => {
@@ -35,8 +36,17 @@ function ProjectsPage() {
 
                 {projects.length === 0 ? (
                     <FadeIn delay={0.2}>
-                        <div className="text-center py-20 bg-background/5 border border-white/10">
-                            <p className="text-muted-foreground">No projects found.</p>
+                        <div className="flex flex-col items-center justify-center py-24 px-4 bg-background/5 border border-dashed border-white/20 text-center max-w-3xl mx-auto">
+                            <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+                                <Target className="w-10 h-10 text-primary" />
+                            </div>
+                            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Projects in Progress</h3>
+                            <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+                                We are currently documenting our ongoing and completed projects across Zangon Kataf & Jaba. Our impact scorecard will be updated here soon.
+                            </p>
+                            <Link to="/" className="mt-8 inline-flex h-12 items-center justify-center bg-primary px-8 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors">
+                                Return to Home
+                            </Link>
                         </div>
                     </FadeIn>
                 ) : (

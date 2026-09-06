@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 
-const navItems = ['About', 'Projects', 'News', 'Volunteer']
+const navItems = ['About', 'Projects', 'News', 'Contact']
 
 export function Header() {
     const [scrolled, setScrolled] = useState(false)
@@ -44,7 +44,7 @@ export function Header() {
 
                     <nav className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
-                            ['Projects', 'News'].includes(item) ? (
+                            ['Projects', 'News', 'Contact'].includes(item) ? (
                                 <Link
                                     key={item}
                                     // @ts-ignore
@@ -66,12 +66,12 @@ export function Header() {
                     </nav>
 
                     <div className="flex items-center gap-4">
-                        <a
-                            href="#volunteer"
+                        <Link
+                            to="/contact"
                             className="hidden md:inline-flex h-10 items-center justify-center rounded-sm px-6 text-sm font-medium bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
                         >
                             Join Campaign
-                        </a>
+                        </Link>
                         
                         {/* Mobile Menu Toggle */}
                         <button 
@@ -119,7 +119,7 @@ export function Header() {
                     >
                         <nav className="flex flex-col gap-6 mt-8">
                             {navItems.map((item, i) => {
-                                const isLink = ['Projects', 'News'].includes(item);
+                                const isLink = ['Projects', 'News', 'Contact'].includes(item);
                                 return (
                                     <motion.div
                                         key={item}
@@ -158,13 +158,13 @@ export function Header() {
                             transition={{ duration: 0.4, delay: navItems.length * 0.1, ease: [0.22, 1, 0.36, 1] }}
                             className="mt-12"
                         >
-                            <a
-                                href="#volunteer"
+                            <Link
+                                to="/contact"
                                 onClick={() => setIsOpen(false)}
                                 className="inline-flex h-14 w-full items-center justify-center rounded-sm px-8 text-lg font-bold uppercase tracking-widest bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
                             >
                                 Join Campaign
-                            </a>
+                            </Link>
                         </motion.div>
                     </motion.div>
                 )}
