@@ -50,7 +50,6 @@ function ProjectsPage() {
                                 <FadeIn key={project.id} delay={(index % 10) * 0.1}>
                                     <Link 
                                         to="/projects/$slug" 
-                                        // @ts-ignore - TanStack router type inference issue in IDE
                                         params={{ slug: project.slug }}
                                         className="group relative bg-background/5 border border-white/10 hover:border-primary/50 transition-colors h-[360px] sm:h-[400px] flex flex-col justify-end p-6 sm:p-8 overflow-hidden block"
                                     >

@@ -87,3 +87,34 @@ export const fetchProjectBySlug = async (slug: string): Promise<PostData | null>
     }
 };
 
+export const fetchNews = async (limit: number = 10): Promise<PostData[]> => {
+    try {
+        const response = await apiClient.get('/posts', {
+            params: {
+                category: 'news',
+                per_page: limit,
+            }
+        });
+        return response.data?.data?.posts || [];
+    } catch (error) {
+        console.error("Error fetching news from Idibia CMS:", error);
+        return [];
+    }
+};
+
+export const fetchNewsBySlug = async (slug: string): Promise<PostData | null> => {
+    try {
+        const response = await apiClient.get('/posts', {
+            params: {
+                category: 'news',
+                per_page: 100, 
+            }
+        });
+        const posts: PostData[] = response.data?.data?.posts || [];
+        return posts.find(p => p.slug === slug) || null;
+    } catch (error) {
+        console.error(`Error fetching news with slug ${slug}:`, error);
+        return null;
+    }
+};
+
