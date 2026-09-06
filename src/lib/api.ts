@@ -12,14 +12,51 @@ export const apiClient = axios.create({
     }
 });
 
+export interface ImageObject {
+    id?: number;
+    url?: string;
+    source_url?: string;
+    src?: string;
+    alt?: string;
+    title?: string;
+    sizes?: Record<string, {
+        file?: string;
+        width?: number;
+        height?: number;
+        source_url?: string;
+    }>;
+}
+
+export type CMSImage = string | ImageObject | null | undefined;
+
+export function getImageUrl(image: CMSImage): string | null {
+    if (!image) return null;
+    if (typeof image === 'string') {
+        const trimmed = image.trim();
+        return trimmed.length > 0 ? trimmed : null;
+    }
+    if (typeof image === 'object') {
+        return (
+            image.url ||
+            image.source_url ||
+            image.src ||
+            image.sizes?.large?.source_url ||
+            image.sizes?.full?.source_url ||
+            image.sizes?.medium?.source_url ||
+            null
+        );
+    }
+    return null;
+}
+
 export interface HomePageData {
     hero_tagline?: string;
     hero_headline?: string;
     hero_description?: string;
-    hero_image?: string;
+    hero_image?: CMSImage;
     about_headline?: string;
     about_content?: string;
-    about_image?: string;
+    about_image?: CMSImage;
     health_agenda_content?: string;
     // other fields omitted for brevity
 }
@@ -62,7 +99,11 @@ export const fetchProjects = async (limit: number = 10): Promise<PostData[]> => 
                 per_page: limit,
             }
         });
-        return response.data?.data?.posts || [];
+        const posts: any[] = response.data?.data?.posts || [];
+        return posts.map(p => ({
+            ...p,
+            featured_image: getImageUrl(p.featured_image)
+        }));
     } catch (error) {
         console.error("Error fetching projects from Idibia CMS:", error);
         return [];
@@ -79,8 +120,13 @@ export const fetchProjectBySlug = async (slug: string): Promise<PostData | null>
                 per_page: 100, // Fetch enough to ensure we find it
             }
         });
-        const posts: PostData[] = response.data?.data?.posts || [];
-        return posts.find(p => p.slug === slug) || null;
+        const posts: any[] = response.data?.data?.posts || [];
+        const post = posts.find(p => p.slug === slug);
+        if (!post) return null;
+        return {
+            ...post,
+            featured_image: getImageUrl(post.featured_image)
+        };
     } catch (error) {
         console.error(`Error fetching project with slug ${slug}:`, error);
         return null;
@@ -95,7 +141,11 @@ export const fetchNews = async (limit: number = 10): Promise<PostData[]> => {
                 per_page: limit,
             }
         });
-        return response.data?.data?.posts || [];
+        const posts: any[] = response.data?.data?.posts || [];
+        return posts.map(p => ({
+            ...p,
+            featured_image: getImageUrl(p.featured_image)
+        }));
     } catch (error) {
         console.error("Error fetching news from Idibia CMS:", error);
         return [];
@@ -110,10 +160,68 @@ export const fetchNewsBySlug = async (slug: string): Promise<PostData | null> =>
                 per_page: 100, 
             }
         });
-        const posts: PostData[] = response.data?.data?.posts || [];
-        return posts.find(p => p.slug === slug) || null;
+        const posts: any[] = response.data?.data?.posts || [];
+        const post = posts.find(p => p.slug === slug);
+        if (!post) return null;
+        return {
+            ...post,
+            featured_image: getImageUrl(post.featured_image)
+        };
     } catch (error) {
         console.error(`Error fetching news with slug ${slug}:`, error);
+        return null;
+    }
+};
+
+export interface AlbumImage {
+    id: number;
+    url: string;
+    thumbnail: string;
+    caption: string;
+    alt: string;
+}
+
+export interface Album {
+    id: number;
+    slug: string;
+    title: string;
+    excerpt: string;
+    date: string;
+    featured_image: string | null;
+    image_count: number;
+    content?: string;
+    images?: AlbumImage[];
+}
+
+export interface AlbumsResponse {
+    albums: Album[];
+    total: number;
+    totalPages: number;
+    page: number;
+    perPage: number;
+}
+
+export const fetchAlbums = async (page: number = 1, perPage: number = 10): Promise<AlbumsResponse | null> => {
+    try {
+        const response = await apiClient.get('/albums', {
+            params: {
+                page,
+                per_page: perPage,
+            }
+        });
+        return response.data?.data || null;
+    } catch (error) {
+        console.error("Error fetching albums from Idibia CMS:", error);
+        return null;
+    }
+};
+
+export const fetchAlbumBySlug = async (slug: string): Promise<Album | null> => {
+    try {
+        const response = await apiClient.get(`/albums/${slug}`);
+        return response.data?.data?.album || null;
+    } catch (error) {
+        console.error(`Error fetching album with slug ${slug}:`, error);
         return null;
     }
 };

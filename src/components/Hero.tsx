@@ -1,7 +1,10 @@
 import { motion } from 'motion/react'
-import type { HomePageData } from '../lib/api'
+import { getImageUrl, type HomePageData } from '../lib/api'
 
 export function Hero({ data }: { data?: HomePageData | null }) {
+    const heroImageUrl = getImageUrl(data?.hero_image) || "/agm2.jpg"
+    const heroImageAlt = (typeof data?.hero_image === 'object' && data?.hero_image?.alt) ? data.hero_image.alt : "Hon. Amos Magaji"
+
     return (
         <section className="relative min-h-[90vh] flex items-center bg-background overflow-hidden pt-20">
             <div className="absolute inset-0 z-0 hidden lg:flex pointer-events-none">
@@ -45,7 +48,16 @@ export function Hero({ data }: { data?: HomePageData | null }) {
                     className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full mb-8 lg:mb-0"
                 >
                     <div className="absolute inset-0 bg-muted/20 border border-white/10 flex items-center justify-center shadow-2xl overflow-hidden">
-                        <img src="/agm2.jpg" className='w-full h-full object-cover' alt="agm" />
+                        <img 
+                            src={heroImageUrl} 
+                            onError={(e) => {
+                                if (e.currentTarget.src !== window.location.origin + "/agm2.jpg") {
+                                    e.currentTarget.src = "/agm2.jpg"
+                                }
+                            }}
+                            className='w-full h-full object-cover' 
+                            alt={heroImageAlt} 
+                        />
                     </div>
                 </motion.div>
             </div>

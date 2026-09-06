@@ -1,15 +1,27 @@
 import { FadeIn } from './FadeIn'
-import type { HomePageData } from '../lib/api'
+import { getImageUrl, type HomePageData } from '../lib/api'
 
 export function About({ data }: { data?: HomePageData | null }) {
+    const aboutImageUrl = getImageUrl(data?.about_image) || "/agm1.jpg"
+    const aboutImageAlt = (typeof data?.about_image === 'object' && data?.about_image?.alt) ? data.about_image.alt : "Hon. Amos Magaji"
+
     return (
         <section id="about" className="py-16 sm:py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     <div className="lg:col-span-5 relative h-[450px] sm:h-[550px] lg:h-[700px]">
                         <FadeIn className="h-full">
-                            <div className="w-full h-[450px] sm:h-[550px] lg:h-[700px] bg-muted flex items-center justify-center relative z-10 shadow-lg">
-                                <img src={data?.about_image || "/agm1.jpg"} className='w-full h-full object-cover' alt="Hon. Amos Magaji" />
+                            <div className="w-full h-[450px] sm:h-[550px] lg:h-[700px] bg-muted flex items-center justify-center relative z-10 shadow-lg overflow-hidden">
+                                <img 
+                                    src={aboutImageUrl} 
+                                    onError={(e) => {
+                                        if (e.currentTarget.src !== window.location.origin + "/agm1.jpg") {
+                                            e.currentTarget.src = "/agm1.jpg"
+                                        }
+                                    }}
+                                    className='w-full h-full object-cover' 
+                                    alt={aboutImageAlt} 
+                                />
                             </div>
                             {/* Decorative Elements */}
                             <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 w-48 sm:w-64 h-48 sm:h-64 bg-primary/10 -z-10" />

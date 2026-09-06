@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 
-const navItems = ['About', 'Projects', 'News', 'Contact']
+const navItems = ['About', 'Projects', 'News', 'Gallery', 'Contact']
 
 export function Header() {
     const [scrolled, setScrolled] = useState(false)
@@ -44,7 +44,7 @@ export function Header() {
 
                     <nav className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
-                            ['Projects', 'News', 'Contact'].includes(item) ? (
+                            ['Projects', 'News', 'Gallery', 'Contact'].includes(item) ? (
                                 <Link
                                     key={item}
                                     // @ts-ignore
@@ -119,7 +119,7 @@ export function Header() {
                     >
                         <nav className="flex flex-col gap-6 mt-8">
                             {navItems.map((item, i) => {
-                                const isLink = ['Projects', 'News', 'Contact'].includes(item);
+                                const isLink = ['Projects', 'News', 'Gallery', 'Contact'].includes(item);
                                 return (
                                     <motion.div
                                         key={item}
