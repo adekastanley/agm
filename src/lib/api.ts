@@ -226,3 +226,33 @@ export const fetchAlbumBySlug = async (slug: string): Promise<Album | null> => {
     }
 };
 
+export interface AnnotatedImage extends AlbumImage {
+    albumSlug: string;
+    albumTitle: string;
+}
+
+export const fetchAllImagesFromAlbums = async (albums: Album[]): Promise<AnnotatedImage[]> => {
+    try {
+        const promises = albums.map(a => fetchAlbumBySlug(a.slug));
+        const results = await Promise.all(promises);
+        
+        const allImages: AnnotatedImage[] = [];
+        results.forEach((albumDetail, index) => {
+            const album = albums[index];
+            if (albumDetail && albumDetail.images) {
+                albumDetail.images.forEach(img => {
+                    allImages.push({
+                        ...img,
+                        albumSlug: album.slug,
+                        albumTitle: album.title,
+                    });
+                });
+            }
+        });
+        
+        return allImages;
+    } catch (error) {
+        console.error("Error fetching all images from albums:", error);
+        return [];
+    }
+};
