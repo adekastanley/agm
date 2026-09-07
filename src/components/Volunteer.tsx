@@ -26,33 +26,33 @@ export function Volunteer() {
 
                     <div className="bg-white p-6 sm:p-8 lg:p-12 shadow-2xl text-foreground w-full max-w-full overflow-hidden">
                         <FadeIn delay={0.2}>
-                            <h3 className="text-xl sm:text-2xl font-bold mb-6">Join the Grassroots Movement</h3>
-                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                            <h3 className="text-xl sm:text-2xl font-bold mb-6">Join the Grassroots Movement <span className="text-muted-foreground text-sm">(form is currently disabled)</span></h3>
+                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}                    >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                     <div className="space-y-2">
                                         <label className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">Full Name</label>
-                                        <input type="text" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="John Doe" />
+                                        <input type="text" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="John Doe" disabled />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">Phone Number</label>
-                                        <input type="tel" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="0800 000 0000" />
+                                        <input type="tel" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="0800 000 0000" disabled />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                     <div className="space-y-2">
                                         <label className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">Ward</label>
-                                        <input type="text" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="Enter Ward" />
+                                        <input type="text" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="Enter Ward" disabled />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">Polling Unit</label>
-                                        <input type="text" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="Enter Polling Unit" />
+                                        <input type="text" className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" placeholder="Enter Polling Unit" disabled />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
                                     <label className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">How can you help?</label>
-                                    <select className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0">
+                                    <select className="w-full bg-secondary border-none p-3 sm:p-4 focus:ring-2 focus:ring-primary outline-none transition-all box-border min-w-0" disabled>
                                         <option>Canvassing & Mobilization</option>
                                         <option>Media & Communications</option>
                                         <option>Event Organization</option>
@@ -60,7 +60,7 @@ export function Volunteer() {
                                     </select>
                                 </div>
 
-                                <button type="submit" className="w-full bg-primary text-white font-bold h-12 sm:h-14 hover:bg-foreground transition-colors tracking-wide uppercase text-sm sm:text-base">
+                                <button type="submit" className="w-full bg-primary text-white font-bold h-12 sm:h-14 hover:bg-foreground transition-colors tracking-wide uppercase text-sm sm:text-base" disabled>
                                     Register as Volunteer
                                 </button>
                             </form>

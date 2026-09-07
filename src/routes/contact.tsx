@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
 import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
+
 import { FadeIn } from '../components/FadeIn'
 import { useEffect } from 'react'
 
@@ -76,7 +76,7 @@ function RouteComponent() {
                         <div className="lg:col-span-3">
                             <FadeIn delay={0.2}>
                                 <div className="bg-white p-8 rounded-lg border border-border shadow-sm">
-                                    <h3 className="text-2xl font-bold mb-6 text-foreground">Send a Message</h3>
+                                    <h3 className="text-2xl font-bold mb-6 text-foreground">Send a Message <span className="text-sm text-muted-foreground"> (form is currently disabled)</span></h3>
                                     <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                             <div className="space-y-2">
@@ -86,6 +86,7 @@ function RouteComponent() {
                                                     id="firstName"
                                                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                                                     placeholder="John"
+                                                    disabled
                                                 />
                                             </div>
                                             <div className="space-y-2">
@@ -95,6 +96,7 @@ function RouteComponent() {
                                                     id="lastName"
                                                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                                                     placeholder="Doe"
+                                                    disabled
                                                 />
                                             </div>
                                         </div>
@@ -102,6 +104,7 @@ function RouteComponent() {
                                         <div className="space-y-2">
                                             <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address</label>
                                             <input
+                                                disabled
                                                 type="email"
                                                 id="email"
                                                 className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
@@ -114,6 +117,7 @@ function RouteComponent() {
                                             <select
                                                 id="subject"
                                                 className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+                                                disabled
                                             >
                                                 <option value="general">General Inquiry</option>
                                                 <option value="volunteer">Volunteer Sign-up</option>
@@ -125,6 +129,7 @@ function RouteComponent() {
                                         <div className="space-y-2">
                                             <label htmlFor="message" className="text-sm font-medium text-foreground">Message</label>
                                             <textarea
+                                                disabled
                                                 id="message"
                                                 rows={5}
                                                 className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
@@ -135,6 +140,7 @@ function RouteComponent() {
                                         <button
                                             type="submit"
                                             className="w-full h-12 flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors shadow-sm"
+                                            disabled
                                         >
                                             <span>Send Message</span>
                                             <Send className="w-4 h-4" />
